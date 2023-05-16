@@ -20,11 +20,11 @@ def get_gps_tles():
         else:
             line3 = ''
 
-        tle = {
-            'line1': line1,
-            'line2': line2,
-            'line3': line3
-        }
+        tle = [
+            line1,
+            line2,
+            line3
+        ]
 
         tles.append(tle)
 
@@ -35,5 +35,4 @@ def save_tles_to_json(tles, filename):
         json.dump(tles, file, indent=4)
 
 tles = get_gps_tles()
-save_tles_to_json(tles, 'data/gps.json')
-print(tles)
+save_tles_to_json(tles, 'gps.json')
