@@ -36,3 +36,4 @@ def save_tles_to_json(tles, filename):
 
 tles = get_gps_tles()
 save_tles_to_json(tles, 'data/gps.json')
+print(tles)
