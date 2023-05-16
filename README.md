@@ -1,9 +1,10 @@
-**Project Description:**
+# Satellite TLE Data Generator
 
-This project performs an hourly search for updates on the geomagnetic activity index (KP) and updates the data in a JSON file for easy retrieval. The information is obtained from the website [Space Weather GFZ-Potsdam](https://spaceweather.gfz-potsdam.de/), which updates every 3 hours and provides the index for the next 3 days. To access the information, simply call the file [kp.json](https://raw.githubusercontent.com/RenanRB/KPIndex/main/data/kp.json) directly from your application.
+The Satellite TLE Data Generator is a Python script that retrieves satellite information from Celestrak website and generates JSON files for easy usage. By simply calling the `data/gps_tles.json` file provided in this project, users will have access to all available GPS TLEs (Two-Line Elements) at the given moment. This project automatically updates the satellite data on a daily basis.
 
-The purpose of this project is to provide an up-to-date and easily accessible source of geomagnetic activity data. By automating the retrieval and storage process, users can rely on the JSON file for their applications without having to manually scrape the website.
+## Features
 
-By leveraging the provided JSON file (`kp.json`), developers can seamlessly integrate the geomagnetic activity data into their applications, enabling real-time monitoring and analysis of space weather conditions.
+- Retrieves satellite information from Celestrak website.
+- Generates JSON files containing TLE data for GPS satellites.
+- Daily automatic updates to ensure data accuracy.
 
-Feel free to use the provided JSON file as a reliable data source for your application.
