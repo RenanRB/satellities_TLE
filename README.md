@@ -8,3 +8,6 @@ The Satellite TLE Data Generator is a Python script that retrieves satellite inf
 - Generates JSON files containing TLE data for GPS satellites.
 - Daily automatic updates to ensure data accuracy.
 
+## Use case
+
+I currently use this project to feed the data used in my application: https://droneweather.xyz/, I use the library: https://github.com/jhermsmeier/node-tle to read the data and build the necessary information for presentation.
