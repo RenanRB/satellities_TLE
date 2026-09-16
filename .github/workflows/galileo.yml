@@ -5,25 +5,28 @@ on:
   - cron: "2 */12 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v7
         with:
           python-version: 3.x
 
       - name: Install dependencies
         run: pip install requests
 
-      - name: Run minute search
+      - name: Fetch TLEs and commit if changed
         run: |
-          python galileo.py > new_galileo.json
+          python galileo.py
           if ! cmp -s new_galileo.json data/galileo.json; then
             mv new_galileo.json data/galileo.json
             git config --global user.name 'GitHub Actions'

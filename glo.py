@@ -1,38 +1,10 @@
-import requests
-import json
+"""Atualiza os TLEs do GLONASS a partir do Celestrak."""
 
-def get_glo_tles():
-    url = 'https://celestrak.org/NORAD/elements/gp.php?GROUP=glo-ops&FORMAT=tle'
-    response = requests.get(url)
-    tle_data = response.text
+from tle_fetch import buscar, salvar
 
-    # Divide os TLEs em linhas
-    tle_lines = tle_data.strip().split('\n')
+# Piso de seguranca: hoje a constelacao publica bem mais que isso, entao um
+# valor abaixo daqui significa resposta truncada, nao satelite desativado.
+MINIMO_SATELITES = 20
 
-    # Extrai as informações relevantes de cada TLE
-    tles = []
-    for i in range(0, len(tle_lines), 3):
-        line1 = tle_lines[i].strip()
-        line2 = tle_lines[i + 1].strip()
-
-        if i + 2 < len(tle_lines):
-            line3 = tle_lines[i + 2].strip()
-        else:
-            line3 = ''
-
-        tle = [
-            line1,
-            line2,
-            line3
-        ]
-
-        tles.append(tle)
-
-    return tles
-
-def save_tles_to_json(tles, filename):
-    with open(filename, 'w') as file:
-        json.dump(tles, file, indent=4)
-
-tles = get_glo_tles()
-save_tles_to_json(tles, 'new_glo.json')
+tles = buscar('glo-ops', MINIMO_SATELITES)
+salvar(tles, 'new_glo.json')

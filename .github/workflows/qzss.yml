@@ -1,8 +1,8 @@
-name: get glo tle
+name: get qzss tle
 
 on:
   schedule:
-  - cron: "4 */12 * * *"
+  - cron: "8 */12 * * *"
   workflow_dispatch:
 
 permissions:
@@ -26,12 +26,12 @@ jobs:
 
       - name: Fetch TLEs and commit if changed
         run: |
-          python glo.py
-          if ! cmp -s new_glo.json data/glo.json; then
-            mv new_glo.json data/glo.json
+          python qzss.py
+          if ! cmp -s new_qzss.json data/qzss.json; then
+            mv new_qzss.json data/qzss.json
             git config --global user.name 'GitHub Actions'
             git config --global user.email 'actions@github.com'
-            git add data/glo.json
-            git commit -m "Update glo.json"
+            git add data/qzss.json
+            git commit -m "Update qzss.json"
             git push
           fi
